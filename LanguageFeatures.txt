@@ -1,0 +1,146 @@
+1. Syntax & Grammar
+
+  LangArav is designed to be expressive but straightforward, reading almost like a hybrid of Python and custom scripting.
+
+  Statements: Source code is parsed into an Abstract Syntax Tree (AST), which the interpreter then evaluates according to LangArav's execution rules.
+
+  Method Chaining / Dot Notation: Supported for objects (e.g., img.meshWarp(10, 0.05)).
+
+  Typing: Dynamically typed. The interpreter evaluates data types (integers, strings, image objects) at runtime.
+
+2. Variables & Data Types
+
+  Variables are created dynamically upon assignment. They can hold standard data types (ints, floats, strings, lists) or complex objects (like classes or Images).
+
+  Assignment Operator: =
+
+  Example:
+
+  x = 10
+
+  name = "LangArav"
+
+  a = Aura() (Instantiates the Aura class and stores the object in a)
+  
+3. Operators
+
+  Standard mathematical and logical evaluation happens here.
+
+  Arithmetic: +, -, *, /, % (does addition, subtraction, multiplication, division and mod respectively)
+
+  Logical / Comparison: >, <, and, or, not (compares through the greater than, less than , or, and, not respectively)
+
+  Behavior: When parsed, the interpreter evaluates the left and right nodes of the operator and returns the result.
+
+4. Comments
+
+  The comments are denoted using the character #.
+
+  Behavior: When parsed, the interpreter actually ignores anything which is placed after the # symbol until the line ends.
+
+  Example:
+
+  a = 1 # Variable declaration
+
+5. Built-In Global Functions
+
+  These are native hooks provided directly by the LangArav engine.
+
+  print(): Outputs text, variables, or object states to the console for debugging and user feedback.
+
+    Example: print("Hello World") or print(a)
+
+  load(): Loads an image file from a path or URL into a variable as an Image Object so LangArav can manipulate it.
+
+    Example: img = load("path/to/image.jpg")
+
+  blend(): Takes two image objects and blends them together (likely using alpha compositing or specific blending modes).
+  
+    Example: final_img = blend(img1, img2, 0.5)
+
+6. Functions
+
+  Functions are declared using the special func keyword. They encapsulate logic that can be called repeatedly.
+
+  Definition: Uses func followed by the function name and arguments.
+
+  Example:
+
+  Python
+
+  func Greet() 
+      # Interpreter executes this block
+      print("Hello Sir")
+
+  Greet() # Would do everything inside the function Greet()
+
+7. Classes & Inheritance
+
+  LangArav supports object-oriented structures, allowing you to define blueprints and instantiate them.
+
+  Instantiation: You can assign an existing class to a variable. If you have an Aura class defined, you can create an instance of it by calling it like a function.
+
+  Example:
+  a = Aura()
+  (This tells the parser to creates an instance of that class, which can store its own properties and access its defined methods inside a.)
+
+  Inheritance: Allows a new class to inherit methods and properties from a parent class, letting you build complex structures without rewriting code.
+
+8. Conditionals
+
+  Control flow is handled by standard boolean logic checks.
+
+  Keywords: if, elif, else.
+
+  Behavior: The interpreter evaluates the condition. If true, then it jumps into that specific code block and ignores the rest.
+
+  Example:
+
+  Python
+  if x > 10:
+      print("High")
+  elif x == 10:
+      print("Perfect")
+  else:
+      print("Low")
+
+9. Image Primitives (Drawing)
+
+  Methods attached to an Image Object that draw basic shapes directly onto the canvas using coordinate geometry.
+
+  img.rectangle(x1, y1, x2, y2, color, width)
+
+  img.ellipse(x1, y1, x2, y2, color, width)
+
+  img.polygon(points_list, color, width)
+
+  img.arrow(x1, y1, x2, y2, color, thickness)
+
+  img.line(...) & img.circle(...)
+
+10. Image-Processing Methods
+
+  Advanced manipulation methods attached to Image Objects. These execute complex algorithms (like OpenCV or FFT math) under the hood.
+
+  Distortion: meshWarp, liquify, swirl, pinch, bulge
+
+  Frequency / Math: bandpass, bandstop, notch, magnitude, phase, inverseFFT
+
+  Edge / Feature Detection: sobel, scharr, laplacian, canny, harris, shiTomasi
+
+  Analysis / Utility: entropy, sharpness, noise, PSNR, SSIM, objectCount, heatmap, falseColor, depthMap, vectorField
+
+11. Errors & Exceptions
+
+  How the LangArav engine handles bad code or illegal operations.
+
+  Syntax Errors: Caught by the lexer/parser before execution (e.g., missing brackets, invalid characters like a rogue →).
+
+  Runtime Errors: Caught during execution (e.g., calling an image method on a string variable, or dividing by zero).
+
+  Behavior: The interpreter catches these exceptions safely, halt execution, and print a helpful stack trace or error message to the console rather than crashing the whole program.
+
+11. LangArav's Core Design Philosophy
+
+  LangArav is a domain-specific programming language centered around programmable image manipulation. 
+  It combines familiar programming constructs such as variables, conditionals, functions, and classes with an image-oriented object model, allowing users to manipulate images through readable programmatic operations.
